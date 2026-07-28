@@ -13,6 +13,10 @@ out/
 *.ipr
 out/
 
+# Doc Folders (Anywhere in the project)
+doc/
+**/doc/
+
 # OS generated files
 .DS_Store
 Thumbs.db

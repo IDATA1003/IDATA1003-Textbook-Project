@@ -20,3 +20,14 @@ buildNumber.properties
 # BlueJ related
 .class
 .ctxt
+
+# IntelliJ IDEA related
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# OS generated files
+.DS_Store
+Thumbs.db

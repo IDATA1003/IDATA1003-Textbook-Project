@@ -3,7 +3,7 @@
  * A pallet is a stack of bricks on a wooden base.
  *
  * @author: Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Pallet
 {

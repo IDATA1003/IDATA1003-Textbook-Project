@@ -3,7 +3,7 @@
  * auction: a lot.
  * 
  * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Lot
 {
@@ -27,8 +27,8 @@ public class Lot
     }
 
     /**
-     * Attempt to bid for this lot. A successful bid
-     * must have a value higher than any existing bid.
+     * Attempt to bid for this lot. A successful bid must have a value 
+     * higher than any existing bid.
      * @param bid A new bid.
      * @return true if successful, false otherwise
      */

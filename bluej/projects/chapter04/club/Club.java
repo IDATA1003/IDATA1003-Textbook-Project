@@ -2,7 +2,7 @@
  * Store details of club memberships.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 7.0
  */
 public class Club
 {

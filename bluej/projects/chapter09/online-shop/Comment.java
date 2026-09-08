@@ -7,7 +7,7 @@
  * A negative vote balance means that the comment received more downvotes than upvotes.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Comment
 {

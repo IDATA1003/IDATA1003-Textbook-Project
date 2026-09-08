@@ -10,8 +10,8 @@ import java.util.HashSet;
  * that repeatedly reads input and generates output until the users wants to 
  * leave.
  * 
- * @author     Michael Kölling and David J. Barnes
- * @version    1.0 (2016.02.29)
+ * @author  Michael Kölling and David J. Barnes
+ * @version 7.3
  */
 public class SupportSystem
 {
@@ -27,7 +27,11 @@ public class SupportSystem
         responder = new Responder();
     }
 
-    
+    /**
+     * Start the technical support system. 
+     * This will print a welcome message and enter
+     * into a dialog with the user, until the user ends the dialog.
+     */    
     public void start()
     {
         boolean finished = false;

@@ -5,9 +5,8 @@ This project is part of the supplementary material for
 chapter 4 of the book
 
    Objects First with Java - A Practical Introduction using BlueJ
-   Sixth edition
+   Seventh edition
    David J. Barnes and Michael Kölling
-   Pearson Education, 2016
 
 Purpose of project: To demonstrate collections of objects
 How to start this project:

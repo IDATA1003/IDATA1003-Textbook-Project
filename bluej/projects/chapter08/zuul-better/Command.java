@@ -14,7 +14,7 @@
  * If the command had only one word, then the second word is <null>.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.1
  */
 
 public class Command
@@ -59,7 +59,7 @@ public class Command
      */
     public boolean isUnknown()
     {
-        return (commandWord == null);
+        return commandWord == null;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Command
      */
     public boolean hasSecondWord()
     {
-        return (secondWord != null);
+        return secondWord != null;
     }
 }
 

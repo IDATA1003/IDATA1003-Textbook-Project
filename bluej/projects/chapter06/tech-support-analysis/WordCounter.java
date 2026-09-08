@@ -2,16 +2,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Keep a record of how many times each word was
- * entered by users.
+ * Keep a record of how many times each word was entered by users.
  * 
- * @author     Michael Kölling and David J. Barnes
- * @version    1.0 (2016.02.29)
+ * @author  Michael Kölling and David J. Barnes
+ * @version 7.0
  */
 public class WordCounter
 {
     // Associate each word with a count.
-    private HashMap<String, Integer> counts;
+    private final HashMap<String, Integer> counts;
 
     /**
      * Create a WordCounter

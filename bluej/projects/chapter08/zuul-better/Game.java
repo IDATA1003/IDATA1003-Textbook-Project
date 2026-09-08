@@ -12,9 +12,8 @@
  *  executes the commands that the parser returns.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.1
  */
-
 public class Game 
 {
     private Parser parser;
@@ -57,7 +56,8 @@ public class Game
 
         office.setExit("west", lab);
 
-        currentRoom = outside;  // start game outside
+        // start game outside
+        currentRoom = outside;  
     }
 
     /**
@@ -173,7 +173,8 @@ public class Game
             return false;
         }
         else {
-            return true;  // signal that we want to quit
+            // signal that we want to quit
+            return true;  
         }
     }
 }

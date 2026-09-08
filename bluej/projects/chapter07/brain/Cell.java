@@ -1,13 +1,13 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
- * A cell in a 2D cellular automaton.
- * The cell has multiple possible states.
+ * A cell in a 2D cellular automaton. The cell has multiple possible states.
  * This is an implementation of the rules for Brian's Brain.
  * @see https://en.wikipedia.org/wiki/Brian%27s_Brain
  * 
  * @author David J. Barnes and Michael Kölling
- * @version  2016.02.29
+ * @version 7.0
  */
 public class Cell
 {
@@ -40,8 +40,7 @@ public class Cell
     }
     
     /**
-     * Determine this cell's next state, based on the
-     * state of its neighbors.
+     * Determine this cell's next state, based on the state of its neighbors.
      * This is an implementation of the rules for Brian's Brain.
      * @return The next state.
      */
@@ -49,12 +48,9 @@ public class Cell
     {
         if(state == DEAD) {
             // Count the number of neighbors that are alive.
-            int aliveCount = 0;
-            for(Cell n : neighbors) {
-                if(n.getState() == ALIVE) {
-                    aliveCount++;
-                }
-            }
+            long aliveCount = Arrays.stream(neighbors)
+                                    .filter(n -> n.getState() == ALIVE)
+                                    .count();
             return aliveCount == 2 ? ALIVE : DEAD;
         }
         else if(state == DYING) {
@@ -66,14 +62,12 @@ public class Cell
     }
     
     /**
-     * Receive the list of neighboring cells and take
-     * a copy.
+     * Receive the list of neighboring cells and take a copy.
      * @param neighborList Neighboring cells.
      */
     public void setNeighbors(ArrayList<Cell> neighborList)
     {
-        neighbors = new Cell[neighborList.size()];
-        neighborList.toArray(neighbors);
+        neighbors = neighborList.toArray(new Cell[0]);
     }
 
     /**
@@ -92,6 +86,5 @@ public class Cell
     public void setState(int state)
     {
         this.state = state;
-    }   
-    
+    }
 }

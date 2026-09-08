@@ -1,12 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.List;
 
 /**
  * A class to read information from a file of web server accesses.
@@ -14,10 +14,10 @@ import java.util.Scanner;
  * date and time information in the format:
  *
  *    year month day hour minute
- * Log entries are sorted into ascending order of date.
+ * Log entries are sorted by the reader into ascending order of date.
  * 
  * @author David J. Barnes and Michael Kölling.
- * @version    2016.02.29
+ * @version 7.0
  */
 public class LogfileReader implements Iterator<LogEntry>
 {
@@ -26,17 +26,9 @@ public class LogfileReader implements Iterator<LogEntry>
     // Where the file's contents are stored in the form
     // of LogEntry objects.
     private ArrayList<LogEntry> entries;
-    // An iterator over entries.
+    // An iterator over the entries.
     private Iterator<LogEntry> dataIterator;
-    
-    /**
-     * Create a LogfileReader to supply data from a default file.
-     */
-    public LogfileReader()
-    {
-        this("weblog.txt");
-    }
-    
+
     /**
      * Create a LogfileReader that will supply data
      * from a particular log file. 
@@ -48,32 +40,29 @@ public class LogfileReader implements Iterator<LogEntry>
         format = "Year Month(1-12) Day Hour Minute";       
         // Where to store the data.
         entries = new ArrayList<>();
-        
+
         // Attempt to read the complete set of data from file.
         boolean dataRead;
         try{
-            // Locate the file with respect to the current environment.
-            URL fileURL = getClass().getClassLoader().getResource(filename);
-            if(fileURL == null) {
-                throw new FileNotFoundException(filename);
-            }
-            Scanner logfile = new Scanner(new File(fileURL.toURI()));
-            // Read the data lines until the end of file.
-            while(logfile.hasNextLine()) {
-                String logline = logfile.nextLine();
+            Path filePath = Paths.get(filename);
+            List<String> lines = Files.readAllLines(filePath);
+            for(String logline : lines) {
                 // Break up the line and add it to the list of entries.
-                LogEntry entry = new LogEntry(logline);
+                String[] parts = logline.split(" ");
+                int[] values = Arrays.stream(parts)
+                                     .mapToInt(Integer::parseInt)
+                                     .toArray();
+                LogEntry entry = new LogEntry(values);
                 entries.add(entry);
             }
-            logfile.close();
             dataRead = true;
         }
-        catch(FileNotFoundException | URISyntaxException e) {
+        catch(IOException e) {
             System.out.println("Problem encountered: " + e);
             dataRead = false;
         }
         // If we couldn't read the log file, use simulated data.
-        if(!dataRead) {
+        if(! dataRead) {
             System.out.println("Failed to read the data file: " + filename);
             System.out.println("Using simulated data instead.");
             createSimulatedData(entries);
@@ -82,7 +71,15 @@ public class LogfileReader implements Iterator<LogEntry>
         Collections.sort(entries);
         reset();
     }
-    
+
+    /**
+     * Create a LogfileReader to supply data from a default file.
+     */
+    public LogfileReader()
+    {
+        this("weblog.txt");
+    }
+
     /**
      * Does the reader have more data to supply?
      * @return true if there is more data available,
@@ -92,7 +89,7 @@ public class LogfileReader implements Iterator<LogEntry>
     {
         return dataIterator.hasNext();
     }
-    
+
     /**
      * Analyze the next line from the log file and
      * make it available via a LogEntry object.
@@ -104,7 +101,7 @@ public class LogfileReader implements Iterator<LogEntry>
     {
         return dataIterator.next();
     }
-    
+
     /**
      * Remove an entry.
      * This operation is not permitted.
@@ -113,7 +110,7 @@ public class LogfileReader implements Iterator<LogEntry>
     {
         System.err.println("It is not permitted to remove entries.");
     }
-    
+
     /**
      * @return A string explaining the format of the data
      *         in the log file.
@@ -122,7 +119,7 @@ public class LogfileReader implements Iterator<LogEntry>
     {
         return format;
     }
-    
+
     /**
      * Set up a fresh iterator to provide access to the data.
      * This allows a single file of data to be processed

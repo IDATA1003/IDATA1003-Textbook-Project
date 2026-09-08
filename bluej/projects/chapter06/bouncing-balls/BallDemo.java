@@ -5,7 +5,7 @@ import java.awt.Color;
  * Canvas class. 
  *
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 
 public class BallDemo   
@@ -25,7 +25,8 @@ public class BallDemo
      */
     public void bounce()
     {
-        int ground = 400;   // position of the ground line
+        // position of the ground line
+        int ground = 400;   
 
         myCanvas.setVisible(true);
 
@@ -42,7 +43,8 @@ public class BallDemo
         // make them bounce
         boolean finished =  false;
         while (!finished) {
-            myCanvas.wait(50);           // small delay
+            // small delay
+            myCanvas.wait(50);           
             ball.move();
             ball2.move();
             // stop once ball has travelled a certain distance on x axis

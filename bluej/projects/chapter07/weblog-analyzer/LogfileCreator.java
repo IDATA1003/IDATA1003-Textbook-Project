@@ -1,14 +1,17 @@
-import java.io.*;
-import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * A class for creating log files of random data.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version    2016.02.29
+ * @version 7.0
  */
 public class LogfileCreator
 {
+    // For generating random data.
     private Random rand;
 
     /**
@@ -46,7 +49,6 @@ public class LogfileCreator
             catch(IOException e) {
                 System.err.println("There was a problem writing to " + filename);
             }
-                
         }
         return success;
     }
@@ -57,7 +59,7 @@ public class LogfileCreator
      */
     public LogEntry createEntry()
     {
-        int year = 2016;
+        int year = 2024;
         int month = 1 + rand.nextInt(12);
         // Avoid the complexities of days-per-month.
         int day = 1 + rand.nextInt(28);

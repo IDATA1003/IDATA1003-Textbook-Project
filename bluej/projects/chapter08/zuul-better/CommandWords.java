@@ -6,12 +6,12 @@
  * It is used to recognise commands as they are typed in.
  *
  * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.1
  */
 
 public class CommandWords
 {
-    // a constant array that holds all valid command words
+    // A constant array that holds all valid command words.
     private static final String[] validCommands = {
         "go", "quit", "help"
     };
@@ -31,8 +31,9 @@ public class CommandWords
     public boolean isCommand(String aString)
     {
         for(int i = 0; i < validCommands.length; i++) {
-            if(validCommands[i].equals(aString))
+            if(validCommands[i].equals(aString)) {
                 return true;
+            }
         }
         // if we get here, the string was not found in the commands
         return false;

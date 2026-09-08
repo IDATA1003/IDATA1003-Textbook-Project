@@ -2,33 +2,33 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Monitor counts of different types of animal.
- * Sightings are recorded by spotters.
+ * Monitor counts of different types of animal. Sightings are recorded 
+ * by spotters. This version uses imperative constructs for processing the data.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (imperative)
+ * @version 7.0
  */
 public class AnimalMonitor 
 {
     // Records of all the sightings of animals.
-    private ArrayList<Sighting> sightings;
+    private ArrayList<Sighting> sightingList;
     
     /**
      * Create an AnimalMonitor.
      */
     public AnimalMonitor()
     {
-        this.sightings = new ArrayList<>();
+        this.sightingList = new ArrayList<>();
     }
     
     /**
-     * Add the sightings recorded in the given filename to the current list.
-     * @param filename A CSV file of Sighting records.
+     * Add the sightings from the given file.
+     * @param filename A CSV file of recorded sightings.
      */
     public void addSightings(String filename)
     {
         SightingReader reader = new SightingReader();
-        sightings.addAll(reader.getSightings(filename));
+        sightingList.addAll(reader.getSightings(filename));
     }
     
     /**
@@ -36,8 +36,8 @@ public class AnimalMonitor
      */
     public void printList()
     {
-        for(Sighting record : sightings) {
-            System.out.println(record.getDetails());
+        for(Sighting aSighting : sightingList) {
+            System.out.println(aSighting.getDetails());
         }
     }
     
@@ -47,9 +47,9 @@ public class AnimalMonitor
      */
     public void printSightingsOf(String animal)
     {
-        for(Sighting record : sightings) {
-            if(animal.equals(record.getAnimal())) {
-                System.out.println(record.getDetails());
+        for(Sighting aSighting : sightingList) {
+            if(animal.equals(aSighting.getAnimal())) {
+                System.out.println(aSighting.getDetails());
             }
         }
     }
@@ -60,9 +60,9 @@ public class AnimalMonitor
      */
     public void printSightingsBy(int spotter)
     {
-        for(Sighting record : sightings) {
-            if(record.getSpotter() == spotter) {
-                System.out.println(record.getDetails());
+        for(Sighting aSighting : sightingList) {
+            if(aSighting.getSpotter() == spotter) {
+                System.out.println(aSighting.getDetails());
             }
         }        
     }
@@ -91,24 +91,24 @@ public class AnimalMonitor
     public int getCount(String animal)
     {
         int total = 0;
-        for(Sighting sighting : sightings) {
-            if(animal.equals(sighting.getAnimal())) {
-                total = total + sighting.getCount();
+        for(Sighting aSighting : sightingList) {
+            if(animal.equals(aSighting.getAnimal())) {
+                total = total + aSighting.getCount();
             }
         }
         return total;
     }
     
     /**
-     * Remove from the sightings list all of those records with
+     * Remove from the sightings all of those records with
      * a count of zero.
      */
     public void removeZeroCounts()
     {
-        Iterator<Sighting> it = sightings.iterator();
+        Iterator<Sighting> it = sightingList.iterator();
         while(it.hasNext()) {
-            Sighting record = it.next();
-            if(record.getCount() == 0) {
+            Sighting aSighting = it.next();
+            if(aSighting.getCount() == 0) {
                 it.remove();
             }
         }
@@ -123,17 +123,17 @@ public class AnimalMonitor
      */
     public ArrayList<Sighting> getSightingsInArea(String animal, int area)
     {
-        ArrayList<Sighting> records = new ArrayList<>();
-        for(Sighting record : sightings) {
-            if(animal.equals(record.getAnimal())) {
-                if(record.getArea() == area) {
-                    records.add(record);
+        ArrayList<Sighting> inTheArea = new ArrayList<>();
+        for(Sighting aSighting : sightingList) {
+            if(animal.equals(aSighting.getAnimal())) {
+                if(aSighting.getArea() == area) {
+                    inTheArea.add(aSighting);
                 }
             }
         }
-        return records;
+        return inTheArea;
     }
-    
+        
     /**
      * Return a list of all the sightings of the given animal.
      * @param animal The type of animal.
@@ -142,12 +142,11 @@ public class AnimalMonitor
     public ArrayList<Sighting> getSightingsOf(String animal)
     {
         ArrayList<Sighting> filtered = new ArrayList<>();
-        for(Sighting record : sightings) {
-            if(animal.equals(record.getAnimal())) {
-                filtered.add(record);
+        for(Sighting aSighting : sightingList) {
+            if(animal.equals(aSighting.getAnimal())) {
+                filtered.add(aSighting);
             }
         }
         return filtered;
     }
-    
 }

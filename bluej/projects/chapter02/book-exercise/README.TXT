@@ -4,9 +4,9 @@ Authors: To be set.
 This project is part of the material for the book
 
    Objects First with Java - A Practical Introduction using BlueJ
-   Sixth edition
+   Seventh edition
    David J. Barnes and Michael Kölling
-   Pearson Education, 2016
+   Pearson Education
 
 It is discussed in chapter 2.
 

@@ -4,7 +4,7 @@
  * the StockManager class is completed.
  * 
  * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @version 7.0
  */
 public class StockDemo
 {
@@ -44,9 +44,9 @@ public class StockDemo
      */
     public void showDetails(int id)
     {
-        Product product = getProduct(id);
-        if(product != null) {
-            System.out.println(product.toString());
+        Product aProduct = getProduct(id);
+        if(aProduct != null) {
+            System.out.println(aProduct.toString());
         }
     }
     
@@ -57,11 +57,11 @@ public class StockDemo
      */
     public void sellProduct(int id)
     {
-        Product product = getProduct(id);
+        Product aProduct = getProduct(id);
         
-        if(product != null) {
+        if(aProduct != null) {
             showDetails(id);
-            product.sellOne();
+            aProduct.sellOne();
             showDetails(id);
         }
     }
@@ -74,12 +74,12 @@ public class StockDemo
      */
     public Product getProduct(int id)
     {
-        Product product = manager.findProduct(id);
-        if(product == null) {
+        Product aProduct = manager.findProduct(id);
+        if(aProduct == null) {
             System.out.println("Product with ID: " + id +
                                " is not recognised.");
         }
-        return product;
+        return aProduct;
     }
 
     /**

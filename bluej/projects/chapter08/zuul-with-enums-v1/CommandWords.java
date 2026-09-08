@@ -8,12 +8,12 @@ import java.util.HashMap;
  * It is used to recognise commands as they are typed in.
  *
  * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.2
  */
 
 public class CommandWords
 {
-    // A mapping between a command word and the CommandWord
+    // A mapping between a command string and the CommandWord
     // associated with it.
     private HashMap<String, CommandWord> validCommands;
 
@@ -25,11 +25,12 @@ public class CommandWords
         validCommands = new HashMap<>();
         validCommands.put("go", CommandWord.GO);
         validCommands.put("help", CommandWord.HELP);
+        validCommands.put("?", CommandWord.HELP);
         validCommands.put("quit", CommandWord.QUIT);
     }
 
     /**
-     * Find the CommandWord associated with a command word.
+     * Find the CommandWord associated with a command string.
      * @param commandWord The word to look up (as a string).
      * @return The CommandWord correspondng to commandWord, or UNKNOWN
      *         if it is not a valid command word.

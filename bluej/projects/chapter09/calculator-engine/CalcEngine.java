@@ -1,6 +1,7 @@
 /**
- * The main part of the calculator performing the
- * arithmetic logic of the calculations.
+ * The main part of the calculator performing the arithmetic logic 
+ * of the calculations.
+ * 
  * @author Hacker T. Largebrain 
  * @version 1.0
  */
@@ -24,8 +25,8 @@ public class CalcEngine
     }
 
     /**
-     * @return The value currently displayed
-     * on the calculator.
+     * Return the value of the calculator that should appear in the display right now.
+     * @return The value to be shown on the calculator display.
      */
     public int getDisplayValue()
     {
@@ -33,7 +34,7 @@ public class CalcEngine
     }
 
     /**
-     * A number button was pressed.
+     * A number button was pressed. Process it.
      * @param number The single digit.
      */
     public void numberPressed(int number)
@@ -42,7 +43,7 @@ public class CalcEngine
     }
 
     /**
-     * The '+' button was pressed. 
+     * This method should be called when the '+' button was pressed. 
      */
     public void plus()
     {
@@ -52,7 +53,7 @@ public class CalcEngine
     }
 
     /**
-     * The '-' button was pressed.
+     * This method should be called when the '-' button was pressed.
      */
     public void minus()
     {
@@ -62,7 +63,7 @@ public class CalcEngine
     }
     
     /**
-     * The '=' button was pressed.
+     * This method should be called when the '=' button was pressed.
      */
     public void equals()
     {
@@ -76,7 +77,7 @@ public class CalcEngine
     }
 
     /**
-     * The 'C' (clear) button was pressed.
+     * This method should be called when the 'C' (clear) button was pressed.
      */
     public void clear()
     {
@@ -84,6 +85,7 @@ public class CalcEngine
     }
 
     /**
+     * Return the name of this calculator to be shown as the title of the application.
      * @return The title of this calculation engine.
      */
     public String getTitle()
@@ -92,6 +94,7 @@ public class CalcEngine
     }
 
     /**
+     * Return the name of the author of this application.
      * @return The author of this engine.
      */
     public String getAuthor()
@@ -100,6 +103,7 @@ public class CalcEngine
     }
 
     /**
+     * Return the version number of this application.
      * @return The version number of this engine.
      */
     public String getVersion()
@@ -108,10 +112,8 @@ public class CalcEngine
     }
     
     /**
-     * An operator button has been pressed.
-     * Apply the immediately preceding operator to
-     * calculate an intermediate result. This will
-     * form the left operand of the new operator.
+     * An operator button has been pressed. Apply the immediately preceding operator to
+     * calculate an intermediate result. This will form the left operand of the new operator.
      */
     private void applyPreviousOperator()
     {

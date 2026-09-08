@@ -1,14 +1,14 @@
 /**
  * The main part of the calculator doing the calculations.
  * 
- * @author  David J. Barnes and Michael Kölling 
- * @version 2016.02.29
+ * @author  Michael Kölling and David J. Barnes 
+ * @version 7.0
  */
 public class CalcEngine
 {
     // The calculator's state is maintained in three fields:
     //     buildingDisplayValue, haveLeftOperand, and lastOperator.
-    
+
     // Are we already building a value in the display, or will the
     // next digit be the first of a new one?
     private boolean buildingDisplayValue;
@@ -23,7 +23,7 @@ public class CalcEngine
     private int leftOperand;
 
     /**
-     * Create a CalcEngine.
+     * Create a CalcEngine instance.
      */
     public CalcEngine()
     {
@@ -73,7 +73,7 @@ public class CalcEngine
     {
         applyOperator('-');
     }
-    
+
     /**
      * The '=' button was pressed.
      */
@@ -83,8 +83,8 @@ public class CalcEngine
         // so ensure that we really have a left operand, an operator
         // and a right operand.
         if(haveLeftOperand &&
-                lastOperator != '?' &&
-                buildingDisplayValue) {
+        lastOperator != '?' &&
+        buildingDisplayValue) {
             calculateResult();
             lastOperator = '?';
             buildingDisplayValue = false;
@@ -119,7 +119,7 @@ public class CalcEngine
      */
     public String getAuthor()
     {
-        return "David J. Barnes and Michael Kölling";
+        return "Michael Kölling and David J. Barnes";
     }
 
     /**
@@ -127,7 +127,7 @@ public class CalcEngine
      */
     public String getVersion()
     {
-       return "Version 1.0";
+        return "Version 1.0";
     }
 
     /**
@@ -139,22 +139,22 @@ public class CalcEngine
     private void calculateResult()
     {
         switch(lastOperator) {
-            case '+':
-                displayValue = leftOperand + displayValue;
-                haveLeftOperand = true;
-                leftOperand = displayValue;
-                break;
-            case '-':
-                displayValue = leftOperand - displayValue;
-                haveLeftOperand = true;
-                leftOperand = displayValue;
-                break;
-            default:
-                keySequenceError();
-                break;
+            case '+' -> {
+                    displayValue = leftOperand + displayValue;
+                    haveLeftOperand = true;
+                    leftOperand = displayValue;
+                }
+            case '-' -> {
+                    displayValue = leftOperand - displayValue;
+                    haveLeftOperand = true;
+                    leftOperand = displayValue;
+                }
+            default -> {
+                    keySequenceError();
+                }
         }
     }
-    
+
     /**
      * Apply an operator.
      * @param operator The operator to apply.
@@ -164,8 +164,7 @@ public class CalcEngine
         // If we are not in the process of building a new operand
         // then it is an error, unless we have just calculated a
         // result using '='.
-        if(!buildingDisplayValue &&
-                    !(haveLeftOperand && lastOperator == '?')) {
+        if(!buildingDisplayValue && !(haveLeftOperand && lastOperator == '?')) {
             keySequenceError();
             return;
         }

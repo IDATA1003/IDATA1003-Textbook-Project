@@ -4,21 +4,19 @@ Authors: David J. Barnes and Michael Kölling
 This project is part of the material for the book
 
    Objects First with Java - A Practical Introduction using BlueJ
-   Sixth edition
+   Seventh edition
    David J. Barnes and Michael Kölling
-   Pearson Education, 2016
 
 It is discussed in chapter 4.
 
 To start:
 
-Create a MusicOrganizer object on the object bench.
-Use its methods to add, remove, and play files.
+Create a MusicOrganizer object. This will scan the default audio 
+folder for any mp3 files. The default folder is the one named
+"audio", in the same directory as the project folder.
 
-The listMatching method prints all files matching a
-given string the collection.
+You can place your own mp3 files into this folder to include and 
+play them. Just make sure the filename is of the expected format: 
 
-The findFirst method finds the index of a file that
-matches a search string.
-
+  artist name-track name.mp3
 

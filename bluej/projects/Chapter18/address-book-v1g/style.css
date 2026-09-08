@@ -1,0 +1,18 @@
+#buttons {
+    -fx-padding: 10;
+    -fx-hgap: 10;
+    -fx-alignment: center;
+}
+
+#searchLabel {
+    -fx-padding: 8;
+    -fx-alignment: center;
+}
+
+#searchPane {
+    -fx-padding: 12 0 6 0;
+}
+
+.root {
+    -fx-padding: 12;
+}

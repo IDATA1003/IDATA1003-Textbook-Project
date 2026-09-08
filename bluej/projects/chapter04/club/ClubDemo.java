@@ -4,7 +4,7 @@
  * classes.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 7.0
  */
 public class ClubDemo
 {
@@ -27,8 +27,8 @@ public class ClubDemo
      */
     public void demo()
     {
-        club.join(new Membership("David", 2, 2004));
-        club.join(new Membership("Michael", 1, 2004));
+        club.join(new Membership("David", 2, 2024));
+        club.join(new Membership("Michael", 1, 2024));
         System.out.println("The club has " +
                            club.numberOfMembers() +
                            " members.");

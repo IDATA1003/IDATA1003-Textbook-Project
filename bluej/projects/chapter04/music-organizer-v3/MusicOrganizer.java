@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * A class to hold details of audio files.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.3
  */
 public class MusicOrganizer
 {

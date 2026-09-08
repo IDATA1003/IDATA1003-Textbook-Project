@@ -13,12 +13,13 @@ import java.awt.geom.*;
  * @author David J. Barnes
  * @author Bruce Quig
  *
- * @version 2016.02.29
+ * @version 7.0
  */
 
 public class BouncingBall
 {
-    private static final int GRAVITY = 3;  // effect of gravity
+    // Effect of gravity
+    private static final int GRAVITY = 3;  
 
     private int ballDegradation = 2;
     private Ellipse2D.Double circle;
@@ -26,9 +27,11 @@ public class BouncingBall
     private int diameter;
     private int xPosition;
     private int yPosition;
-    private final int groundPosition;      // y position of ground
+    // y position of ground
+    private final int groundPosition;      
     private Canvas canvas;
-    private int ySpeed = 1;                // initial downward speed
+    // initial downward speed
+    private int ySpeed = 1;                
 
     /**
      * Constructor for objects of class BouncingBall

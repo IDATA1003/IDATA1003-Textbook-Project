@@ -2,7 +2,7 @@
  * Store details of a club membership.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Membership
 {

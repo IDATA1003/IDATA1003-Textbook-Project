@@ -5,7 +5,7 @@ import java.util.*;
  * Maintain the environment for a 2D cellular automaton.
  * 
  * @author David J. Barnes
- * @version  2016.02.29
+ * @version 7.0
  */
 public class Environment
 {
@@ -157,5 +157,4 @@ public class Environment
             }
         }
     }
-
 }

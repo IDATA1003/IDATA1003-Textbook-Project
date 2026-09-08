@@ -7,7 +7,7 @@ import java.util.Random;
  * leaves a line on the canvas when moved. (If it is up, it will not draw a line.)
  * 
  * @author Michael Kölling & David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Pen
 {
@@ -138,7 +138,7 @@ public class Pen
      */
     public void randomSquiggle()
     {
-        for (int i=0; i<SQIGGLE_COUNT; i++) {
+        for (int i = 0; i < SQIGGLE_COUNT; i++) {
             move(random.nextInt(SQIGGLE_SIZE));
             turn(160 + random.nextInt(40));
         }

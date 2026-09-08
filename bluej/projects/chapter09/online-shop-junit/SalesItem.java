@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * The class represents sales items on an online e-commerce site (such as Amazon.com).
- * SalesItem objects store all information relevant to this item, including description,
+ * The class represents sales items on an online e-commerce site. SalesItem 
+ * objects store all information relevant to this item, including description,
  * price, customer comments, etc.
  * 
- * NOTE: The current version is incomplete! Currently, only code dealing with customer 
- * comments is here.
+ * NOTE: The current version is incomplete! Currently, only code dealing with
+ * customer comments is here.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 0.1 (2016.02.29)
+ * @version 0.1
  */
 public class SalesItem
 {
@@ -53,11 +53,12 @@ public class SalesItem
     }
     
     /**
-     * Add a comment to the comment list of this sales item. Return true if successful;
-     * false if the comment was rejected.
+     * Add a comment to the comment list of this sales item. Return true if
+     * successful; false if the comment was rejected.
      * 
-     * The comment will be rejected if the same author has already left a comment, or
-     * if the rating is invalid. Valid ratings are numbers between 1 and 5 (inclusive).
+     * The comment will be rejected if the same author has already left a  
+     * comment, or if the rating is invalid. Valid ratings are numbers between
+     * 1 and 5 (inclusive).
      */
     public boolean addComment(String author, String text, int rating)
     {
@@ -65,8 +66,8 @@ public class SalesItem
             return false;
         }
         
-        if(findCommentByAuthor(author) != null) {  // reject mutiple comments by same author
-            return false;
+        if(findCommentByAuthor(author) != null) {  // reject mutiple comments 
+            return false;                          // by same author
         }
         
         comments.add(new Comment(author, text, rating));
@@ -74,7 +75,8 @@ public class SalesItem
     }
     
     /**
-     * Remove the comment stored at the index given. If the index is invalid, do nothing.
+     * Remove the comment stored at the index given. If the index is invalid,
+     * do nothing.
      */
     public void removeComment(int index)
     {
@@ -84,8 +86,8 @@ public class SalesItem
     }
     
     /**
-     * Upvote the comment at 'index'. That is: count this comment as more helpful.
-     * If the index is invalid, do nothing.
+     * Upvote the comment at 'index'. That is: count this comment as more 
+     * helpful. If the index is invalid, do nothing.
      */
     public void upvoteComment(int index)
     {
@@ -95,8 +97,8 @@ public class SalesItem
     }
     
     /**
-     * Downvote the comment at 'index'. That is: count this comment as less helpful.
-     * If the index is invalid, do nothing.
+     * Downvote the comment at 'index'. That is: count this comment as less 
+     * helpful. If the index is invalid, do nothing.
      */
     public void downvoteComment(int index)
     {
@@ -106,8 +108,8 @@ public class SalesItem
     }
     
     /**
-     * Show all comments on screen. (Currently, for testing purposes: print to the terminal.
-     * Modify later for web display.)
+     * Show all comments on screen. (Currently, for testing purposes: print to
+     * the terminal. Modify later for web display.)
      */
     public void showInfo()
     {
@@ -124,9 +126,9 @@ public class SalesItem
     }
     
     /**
-     * Return the most helpful comment. The most useful comment is the one with the highest vote
-     * balance. If there are multiple comments with equal highest balance, return any one of
-     * them.
+     * Return the most helpful comment. The most useful comment is the one with
+     * the highest vote balance. If there are multiple comments with equal 
+     * highest balance, return any one of them.
      */
     public Comment findMostHelpfulComment()
     {
@@ -152,7 +154,6 @@ public class SalesItem
     
     /**
      * Find the comment by the author with the given name.
-     * 
      * @return The comment if it exists; null if it doesn't.
      */
     private Comment findCommentByAuthor(String author)
@@ -166,16 +167,16 @@ public class SalesItem
     }
     
     /**
-     * For a price given as an int, return a readable String representing the same price.
-     * The price is given in whole cents. For example for price==12345, the following String
-     * is returned: $123.45
+     * For a price given as an int, return a readable String representing the 
+     * same price. The price is given in whole cents. For example for 
+     * price==12345, the following String is returned: $123.45
      */
     private String priceString(int price)
     {
         int dollars = price / 100;
         int cents = price - (dollars*100);
         if(cents <= 9) {
-            return "$" + dollars + ".0" + cents;  // include zero padding if necessary
+            return "$" + dollars + ".0" + cents;  // add zero padding
         }
         else {
             return "$" + dollars + "." + cents;

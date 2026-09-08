@@ -5,14 +5,13 @@ import java.util.ArrayList;
  * The auction maintains a list of lots of arbitrary length.
  *
  * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Auction
 {
     // The list of Lots in this auction.
-    private ArrayList<Lot> lots;
-    // The number that will be given to the next lot entered
-    // into this auction.
+    private ArrayList<Lot> listOfLots;
+    // The number that will be given to the next lot entered into this auction.
     private int nextLotNumber;
 
     /**
@@ -20,7 +19,7 @@ public class Auction
      */
     public Auction()
     {
-        lots = new ArrayList<>();
+        listOfLots = new ArrayList<>();
         nextLotNumber = 1;
     }
 
@@ -30,7 +29,7 @@ public class Auction
      */
     public void enterLot(String description)
     {
-        lots.add(new Lot(nextLotNumber, description));
+        listOfLots.add(new Lot(nextLotNumber, description));
         nextLotNumber++;
     }
 
@@ -39,15 +38,14 @@ public class Auction
      */
     public void showLots()
     {
-        for(Lot lot : lots) {
-            System.out.println(lot.toString());
+        for(Lot aLot : listOfLots) {
+            System.out.println(aLot.toString());
         }
     }
     
     /**
      * Make a bid for a lot.
-     * A message is printed indicating whether the bid is
-     * successful or not.
+     * A message is printed indicating whether the bid is successful or not.
      * 
      * @param lotNumber The lot being bid for.
      * @param bidder The person bidding for the lot.
@@ -57,8 +55,8 @@ public class Auction
     {
         Lot selectedLot = getLot(lotNumber);
         if(selectedLot != null) {
-            Bid bid = new Bid(bidder, value);
-            boolean successful = selectedLot.bidFor(bid);
+            Bid aBid = new Bid(bidder, value);
+            boolean successful = selectedLot.bidFor(aBid);
             if(successful) {
                 System.out.println("The bid for lot number " +
                                    lotNumber + " was successful.");
@@ -74,15 +72,16 @@ public class Auction
     }
 
     /**
-     * Return the lot with the given number. Return null
-     * if a lot with this number does not exist.
+     * Return the lot with the given number. Return null if a lot with this 
+     * number does not exist.
      * @param lotNumber The number of the lot to return.
+     * @return The lot with the given number, or null.
      */
     public Lot getLot(int lotNumber)
     {
         if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
             // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
+            Lot selectedLot = listOfLots.get(lotNumber - 1);
             // Include a confidence check to be sure we have the
             // right lot.
             if(selectedLot.getNumber() != lotNumber) {
@@ -102,3 +101,4 @@ public class Auction
         }
     }
 }
+

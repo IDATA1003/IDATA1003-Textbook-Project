@@ -7,28 +7,28 @@ import java.util.stream.Collectors;
  * Sightings are recorded by spotters.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.03.01 (functional)
+ * @version 7.1
  */
 public class AnimalMonitor
 {
-    private ArrayList<Sighting> sightings;
+    private ArrayList<Sighting> sightingList;
     
     /**
      * Create an AnimalMonitor.
      */
     public AnimalMonitor()
     {
-        this.sightings = new ArrayList<>();
+        this.sightingList = new ArrayList<>();
     }
-    
+        
     /**
-     * Add the sightings recorded in the given filename to the current list.
-     * @param filename A CSV file of Sighting records.
+     * Add the sightings from the given file.
+     * @param filename A CSV file of recorded sightings.
      */
     public void addSightings(String filename)
     {
         SightingReader reader = new SightingReader();
-        sightings.addAll(reader.getSightings(filename));
+        sightingList.addAll(reader.getSightings(filename));
     }
     
     /**
@@ -36,7 +36,7 @@ public class AnimalMonitor
      */
     public void printList()
     {
-        sightings.forEach(sighting -> System.out.println(sighting.getDetails()));
+        sightingList.forEach(aSighting -> System.out.println(aSighting.getDetails()));
     }
     
     /**
@@ -45,9 +45,9 @@ public class AnimalMonitor
      */
     public void printSightingsOf(String animal)
     {
-        sightings.stream()
-                 .filter(sighting -> animal.equals(sighting.getAnimal()))
-                 .forEach(sighting -> System.out.println(sighting.getDetails()));        
+        sightingList.stream()
+                    .filter(aSighting -> animal.equals(aSighting.getAnimal()))
+                    .forEach(aSighting -> System.out.println(aSighting.getDetails()));        
     }
     
     /**
@@ -56,10 +56,10 @@ public class AnimalMonitor
      */
     public void printSightingsBy(int spotter)
     {
-        sightings.stream()
-                 .filter(sighting -> sighting.getSpotter() == spotter)
-                 .map(sighting -> sighting.getDetails())
-                 .forEach(details -> System.out.println(details));        
+        sightingList.stream()
+                    .filter(aSighting -> aSighting.getSpotter() == spotter)
+                    .map(aSighting -> aSighting.getDetails())
+                    .forEach(details -> System.out.println(details));        
     }
     
     /**
@@ -69,9 +69,9 @@ public class AnimalMonitor
      */
     public int getCount(String animal)
     {
-        return sightings.stream()
-                        .filter(sighting -> animal.equals(sighting.getAnimal()))
-                        .map(sighting -> sighting.getCount())
-                        .reduce(0, (runningSum, count) -> runningSum + count);
+        return sightingList.stream()
+                           .filter(aSighting -> animal.equals(aSighting.getAnimal()))
+                           .map(aSighting -> aSighting.getCount())
+                           .reduce(0, (runningSum, count) -> runningSum + count);
     }
 }

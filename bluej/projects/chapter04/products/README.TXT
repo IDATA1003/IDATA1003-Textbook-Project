@@ -4,16 +4,15 @@ Authors:  David J. Barnes and Michael Kölling
 This project is supplementary material for the book
 
    Objects First with Java - A Practical Introduction using BlueJ
-   Sixth edition
+   Seventh edition
    David J. Barnes and Michael Kölling
-   Pearson Education, 2016
 
 Purpose of the project
 =======================
 The project is intended to extend understanding of object
 collections, including the use of loops, iterators and
 casting. The exercises could be tackled after completing
-Section 4.9 of Chapter 4.
+Section 4.12 of Chapter 4.
 
 The exercises
 =============

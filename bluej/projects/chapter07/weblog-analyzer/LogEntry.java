@@ -7,39 +7,31 @@ import java.util.Calendar;
  * accessors such as getHour() and getMinute().
  * 
  * @author David J. Barnes and Michael Kölling.
- * @version    2016.02.29
+ * @version 7.0
  */
 public class LogEntry implements Comparable<LogEntry>
 {
-    // Where the data values extracted from a single
-    // log line are stored.
+    // Where the data values extracted from a single log line are stored.
     private int[] dataValues;
     // The equivalent Calendar object for the log time.
     private Calendar when;
     
-    // At which index in dataValues the different fields
-    // from a log line are stored.
+    // At which index in dataValues the different fields from a log line
+    // are stored.
     private static final int YEAR = 0, MONTH = 1, DAY = 2,
                              HOUR = 3, MINUTE = 4;
-    // The number of fields. If more fields are added, e.g. for
-    // seconds or a status code, then this value must be increased
-    // to match.
+    // The number of fields. If more fields are added, e.g. for seconds
+    // or a status code, then this value must be increased to match.
     private static final int NUMBER_OF_FIELDS = 5;
                       
     /**
-     * Decompose a log line so that the individual fields
-     * are available.
-     * @param logline A single line from the log.
-     *                This should be in the format:
-     *                year month day hour minute etc.
+     * Receive the data values of a single log entry.
+     * @param dataValues These should be in the order:
+     *                      year month day hour minute etc.
      */
-    public LogEntry(String logline)
+    public LogEntry(int[] dataValues)
     {
-        // The array to store the data for a single line.
-        dataValues = new int[NUMBER_OF_FIELDS];
-        // Break up the log line.
-        LoglineTokenizer tokenizer = new LoglineTokenizer();
-        tokenizer.tokenize(logline,dataValues);
+        this.dataValues = dataValues;
         setWhen();
     }
     
@@ -89,17 +81,17 @@ public class LogEntry implements Comparable<LogEntry>
      */
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder theData = new StringBuilder();
         for(int value : dataValues) {
            // Prefix a leading zero on single digit numbers.
             if(value < 10) {
-                buffer.append('0');
+                theData.append('0');
             }
-            buffer.append(value);
-            buffer.append(' ');
+            theData.append(value);
+            theData.append(' ');
         }
         // Drop any trailing space.
-        return buffer.toString().trim();
+        return theData.toString().trim();
     }
     
     /**
@@ -136,5 +128,4 @@ public class LogEntry implements Comparable<LogEntry>
                  dataValues[MONTH] - 1, dataValues[DAY] - 1,
                  dataValues[HOUR], dataValues[MINUTE]);
     }
-    
 }

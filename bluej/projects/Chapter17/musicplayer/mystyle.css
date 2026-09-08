@@ -1,0 +1,27 @@
+
+.label {
+    -fx-font-size: 16px;
+}
+
+.list-view {
+    -fx-font-size: 18px;
+}
+
+#content {
+    -fx-padding: 14px;
+    -fx-spacing: 14px;
+}
+
+#bottom {
+    -fx-padding: 14px;
+    -fx-spacing: 14px;
+}
+
+#toolbar {
+    -fx-font-size: 18px;
+    -fx-hgap: 14px;
+}
+
+.root {
+    -fx-background: rgb(101, 145, 182);
+}

@@ -1,10 +1,10 @@
-import java.util.*;
+import java.util.Arrays;
 
 /**
  * Model a 1D elementary cellular automaton.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version  2016.02.29 - version 3
+ * @version 7.3
  */
 public class Automaton
 {
@@ -23,7 +23,7 @@ public class Automaton
         // Allow an extra element to avoid 'fencepost' errors.
         state = new int[numberOfCells + 1];
         // Seed the automaton with a single 'on' cell.
-        state[numberOfCells / 2] = 1;
+        reset();
     }
     
     /**
@@ -36,7 +36,7 @@ public class Automaton
         }
         System.out.println();
     }   
-    
+
     /**
      * Update the automaton to its next state.
      */
@@ -44,8 +44,7 @@ public class Automaton
     {
         // Build the new state in a separate array.
         int[] nextState = new int[state.length];
-        // Use 0 for the non-existent value to the left of
-        // the first cell.
+        // Use 0 for the non-existent value to the left of the first cell.
         int left = 0;
         int center = state[0];
         for(int i = 0; i < numberOfCells; i++) {
@@ -82,5 +81,4 @@ public class Automaton
     {
         return (center + right + center * right + left * center * right) % 2;
     }
-
 }

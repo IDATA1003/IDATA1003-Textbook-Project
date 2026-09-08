@@ -7,7 +7,7 @@
  * if enough money has been input.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.1
  */
 public class TicketMachine
 {
@@ -37,8 +37,7 @@ public class TicketMachine
     }
 
     /**
-     * Return The amount of money already inserted for the
-     * next ticket.
+     * Return The amount of money already inserted for the next ticket.
      */
     public int getBalance()
     {
@@ -55,8 +54,7 @@ public class TicketMachine
             balance = balance + amount;
         }
         else {
-            System.out.println("Use a positive amount rather than: " +
-                               amount);
+            System.out.println("Use a positive amount rather than: " + amount);
         }
     }
 
@@ -82,9 +80,8 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
-            System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
-                    
+            System.out.printf("You must insert at least %d more cents.%n",
+                              price - balance);
         }
     }
 

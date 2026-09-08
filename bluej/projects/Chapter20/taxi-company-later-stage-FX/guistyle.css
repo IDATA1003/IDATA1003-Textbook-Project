@@ -1,0 +1,13 @@
+#content {
+    -fx-padding: 14px;
+}
+
+#toolbar {
+    -fx-font-size: 18px;
+    -fx-hgap: 14px;
+    -fx-padding: 14px;
+}
+
+.root {
+    -fx-background: rgb(101, 145, 182);
+}

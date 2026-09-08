@@ -5,19 +5,19 @@ import java.util.ArrayList;
  * The stock is described by zero or more Products.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 7.0
  */
 public class StockManager
 {
     // A list of the products.
-    private ArrayList<Product> stock;
+    private ArrayList<Product> stockList;
 
     /**
      * Initialise the stock manager.
      */
     public StockManager()
     {
-        stock = new ArrayList<>();
+        stockList = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        stockList.add(item);
     }
     
     /**

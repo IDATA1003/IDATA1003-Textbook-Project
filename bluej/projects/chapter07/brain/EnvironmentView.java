@@ -7,7 +7,7 @@ import javax.swing.event.*;
  * A GUI for the environment, with runtime controls.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version  2016.02.29
+ * @version 7.0
  */
 public class EnvironmentView extends JFrame
 {
@@ -27,7 +27,7 @@ public class EnvironmentView extends JFrame
     
     /**
      * Constructor for objects of class EnvironmentView
-     * @param env
+     * @param env The environment to be visualised.
      */
     public EnvironmentView(Environment env, int rows, int cols)
     {
@@ -148,7 +148,6 @@ public class EnvironmentView extends JFrame
         contents.add(controls, BorderLayout.SOUTH);
     }
 
-    
     /**
      * Set the animation delay.
      * @param speedPercentage (100-speedPercentage) as a percentage of the LONGEST_DELAY.

@@ -9,7 +9,7 @@ import java.awt.geom.*;
  * @author Michael Kölling (mik)
  * @author Bruce Quig
  *
- * @version 2016.02.29
+ * @version 7.0
  */
 
 public class Canvas
@@ -115,8 +115,8 @@ public class Canvas
     /**
      * Fill the internal dimensions of the given circle with the current 
      * foreground color of the canvas.
-     * @param  xPos  The x-coordinate of the circle center point
-     * @param  yPos  The y-coordinate of the circle center point
+     * @param  xPos  The x-coordinate of the top-left bounding box
+     * @param  yPos  The y-coordinate of the top-left bounding box
      * @param  diameter  The diameter of the circle to be drawn
      */
     public void fillCircle(int xPos, int yPos, int diameter)
@@ -129,7 +129,11 @@ public class Canvas
      * Fill the internal dimensions of the given rectangle with the current 
      * foreground color of the canvas. This is a convenience method. A similar 
      * effect can be achieved with the "fill" method.
-     */
+     * @param xPos top-left x-coordinate
+     * @param yPos top-left y-coordinate
+     * @param width width
+     * @param height height
+    */
     public void fillRectangle(int xPos, int yPos, int width, int height)
     {
         fill(new Rectangle(xPos, yPos, width, height));
@@ -152,6 +156,9 @@ public class Canvas
      * Erase the internal dimensions of the given circle. This is a 
      * convenience method. A similar effect can be achieved with
      * the "erase" method.
+     * @param  xPos  The x-coordinate of the top-left bounding box
+     * @param  yPos  The y-coordinate of the top-left bounding box
+     * @param  diameter  The diameter of the circle to be drawn
      */
     public void eraseCircle(int xPos, int yPos, int diameter)
     {
@@ -163,6 +170,10 @@ public class Canvas
      * Erase the internal dimensions of the given rectangle. This is a 
      * convenience method. A similar effect can be achieved with
      * the "erase" method.
+     * @param xPos top-left x-coordinate
+     * @param yPos top-left y-coordinate
+     * @param width width
+     * @param height height
      */
     public void eraseRectangle(int xPos, int yPos, int width, int height)
     {

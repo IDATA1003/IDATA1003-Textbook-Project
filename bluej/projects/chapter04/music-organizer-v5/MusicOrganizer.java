@@ -5,12 +5,12 @@ import java.util.ArrayList;
  * Individual tracks may be played.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.5
  */
 public class MusicOrganizer
 {
     // An ArrayList for storing music tracks.
-    private ArrayList<Track> tracks;
+    private ArrayList<Track> trackList;
     // A player for the music tracks.
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
@@ -21,11 +21,15 @@ public class MusicOrganizer
      */
     public MusicOrganizer()
     {
-        tracks = new ArrayList<>();
         player = new MusicPlayer();
         reader = new TrackReader();
-        readLibrary("../audio");
-        System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
+        trackList = reader.readTracks("../audio", ".mp3");
+        if(! trackList.isEmpty()) {
+            System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
+        }
+        else {
+            System.out.println("No tracks loaded.");
+        }
         System.out.println();
     }
     
@@ -35,29 +39,16 @@ public class MusicOrganizer
      */
     public void addFile(String filename)
     {
-        tracks.add(new Track(filename));
+        trackList.add(new Track(filename));
     }
     
     /**
      * Add a track to the collection.
-     * @param track The track to be added.
+     * @param aTrack The track to be added.
      */
-    public void addTrack(Track track)
+    public void addTrack(Track aTrack)
     {
-        tracks.add(track);
-    }
-    
-    /**
-     * Play a track in the collection.
-     * @param index The index of the track to be played.
-     */
-    public void playTrack(int index)
-    {
-        if(indexValid(index)) {
-            Track track = tracks.get(index);
-            player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
-        }
+        trackList.add(aTrack);
     }
     
     /**
@@ -66,7 +57,7 @@ public class MusicOrganizer
      */
     public int getNumberOfTracks()
     {
-        return tracks.size();
+        return trackList.size();
     }
     
     /**
@@ -76,8 +67,8 @@ public class MusicOrganizer
     public void listTrack(int index)
     {
         System.out.print("Track " + index + ": ");
-        Track track = tracks.get(index);
-        System.out.println(track.getDetails());
+        Track aTrack = trackList.get(index);
+        System.out.println(aTrack.getDetails());
     }
     
     /**
@@ -87,11 +78,60 @@ public class MusicOrganizer
     {
         System.out.println("Track listing: ");
 
-        for(Track track : tracks) {
-            System.out.println(track.getDetails());
+        for(Track aTrack : trackList) {
+            System.out.println(aTrack.getDetails());
         }
         System.out.println();
     }
+    
+    /**
+     * Show a list of all the tracks,along with
+     * their index in the collection.
+     */
+    public void listWithIndex()
+    {
+        System.out.println("Track listing: ");
+        int index = 0;
+        while(index < trackList.size()) {
+            Track aTrack = trackList.get(index);
+            System.out.printf("%d: %s%n", index, aTrack.getDetails());
+            index++;
+        }
+        System.out.println();
+    }
+    
+    /**
+     * Find the index of the first file matching the given search string.
+     * @param searchString The string to match.
+     * @return The index of the first occurrence, or -1 if no match is found.
+     */
+    public int findFirst(String searchString)
+    {
+        int index = 0;
+        // Record that we will be searching until a match is found.
+        boolean searching = true;
+
+        while(searching && index < trackList.size()) {
+            Track aTrack = trackList.get(index);
+            String filename = aTrack.getFilename();
+            if(filename.contains(searchString)) {
+                // A match. We can stop searching.
+                searching = false;
+            }
+            else {
+                // Move on.
+                index++;
+            }
+        }
+        if(searching) {
+            // We didn't find it.
+            return -1;
+        }
+        else {
+            // Return where it was found.
+            return index;
+        }
+    }    
     
     /**
      * List all tracks by the given artist.
@@ -99,9 +139,9 @@ public class MusicOrganizer
      */
     public void listByArtist(String artist)
     {
-        for(Track track : tracks) {
-            if(track.getArtist().contains(artist)) {
-                System.out.println(track.getDetails());
+        for(Track aTrack : trackList) {
+            if(aTrack.getArtist().contains(artist)) {
+                System.out.println(aTrack.getDetails());
             }
         }
     }
@@ -112,21 +152,24 @@ public class MusicOrganizer
      */
     public void removeTrack(int index)
     {
-        if(indexValid(index)) {
-            tracks.remove(index);
+        if(validIndex(index)) {
+            trackList.remove(index);
         }
     }
     
     /**
-     * Play the first track in the collection, if there is one.
+     * Play a track in the collection.
+     * @param index The index of the track to be played.
      */
-    public void playFirst()
+    public void playTrack(int index)
     {
-        if(tracks.size() > 0) {
-            player.startPlaying(tracks.get(0).getFilename());
+        if(validIndex(index)) {
+            Track track = trackList.get(index);
+            player.startPlaying(track.getFilename());
+            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
-    
+
     /**
      * Stop the player.
      */
@@ -134,14 +177,14 @@ public class MusicOrganizer
     {
         player.stop();
     }
-
+    
     /**
      * Determine whether the given index is valid for the collection.
      * Print an error message if it is not.
      * @param index The index to be checked.
      * @return true if the index is valid, false otherwise.
      */
-    private boolean indexValid(int index)
+    private boolean validIndex(int index)
     {
         // The return value.
         // Set according to whether the index is valid or not.
@@ -151,7 +194,7 @@ public class MusicOrganizer
             System.out.println("Index cannot be negative: " + index);
             valid = false;
         }
-        else if(index >= tracks.size()) {
+        else if(index >= trackList.size()) {
             System.out.println("Index is too large: " + index);
             valid = false;
         }
@@ -159,15 +202,5 @@ public class MusicOrganizer
             valid = true;
         }
         return valid;
-    }
-    
-    private void readLibrary(String folderName)
-    {
-        ArrayList<Track> tempTracks = reader.readTracks(folderName, ".mp3");
-
-        // Put all thetracks into the organizer.
-        for(Track track : tempTracks) {
-            addTrack(track);
-        }
     }
 }

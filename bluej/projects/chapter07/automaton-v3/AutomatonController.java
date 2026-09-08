@@ -2,7 +2,7 @@
  * Set up and control an elementary cellular automaton.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version  2016.02.29
+ * @version 7.3
  */
 public class AutomatonController
 {

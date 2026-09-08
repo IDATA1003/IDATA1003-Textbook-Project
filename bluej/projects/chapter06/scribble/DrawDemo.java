@@ -6,7 +6,7 @@ import java.util.Random;
  * Pen class to create various drawings.
  *
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 
 public class DrawDemo
@@ -42,7 +42,7 @@ public class DrawDemo
         Pen pen = new Pen(250, 200, myCanvas);
         pen.setColor(Color.RED);
 
-        for (int i=0; i<36; i++) {
+        for (int i = 0; i < 36; i++) {
             square(pen);
             pen.turn(10);
         }
@@ -53,7 +53,7 @@ public class DrawDemo
      */
     private void square(Pen pen)
     {
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             pen.move(100);
             pen.turn(90);
         }
@@ -66,7 +66,7 @@ public class DrawDemo
     {
         Pen pen = new Pen(250, 200, myCanvas);
 
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             // pick a random color
             int red = random.nextInt(256);
             int green = random.nextInt(256);

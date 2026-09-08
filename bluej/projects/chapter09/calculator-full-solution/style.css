@@ -1,0 +1,9 @@
+.root {
+    -fx-padding: 12;
+}
+
+.button {
+    -fx-min-width: 80;
+    -fx-font-size: 15px;
+}
+

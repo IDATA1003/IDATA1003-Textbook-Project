@@ -5,11 +5,11 @@ import javax.swing.border.*;
 
 /**
  * A very simple GUI (graphical user interface) for the clock display.
- * In this implementation, time runs at about 3 minutes per second, so that
+ * In this implementation, time runs at about 4 minutes per second, so that
  * testing the display is a little quicker.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Clock
 {
@@ -24,8 +24,8 @@ public class Clock
      */
     public Clock()
     {
-        makeFrame();
         clock = new ClockDisplay();
+        makeFrame();
     }
     
     /**
@@ -91,7 +91,7 @@ public class Clock
         contentPane.setLayout(new BorderLayout(12, 12));
         
         // Create the image pane in the center
-        label = new JLabel("00:00", SwingConstants.CENTER);
+        label = new JLabel(clock.getTime(), SwingConstants.CENTER);
         Font displayFont = label.getFont().deriveFont(96.0f);
         label.setFont(displayFont);
         //imagePanel.setBorder(new EtchedBorder());
@@ -173,7 +173,7 @@ public class Clock
         private void pause()
         {
             try {
-                Thread.sleep(300);   // pause for 300 milliseconds
+                Thread.sleep(250);   // pause for 250 milliseconds
             }
             catch (InterruptedException exc) {
             }

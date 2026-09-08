@@ -2,7 +2,7 @@
  * Brick models a simple brick.
  * 
  * @author: Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Brick
 {

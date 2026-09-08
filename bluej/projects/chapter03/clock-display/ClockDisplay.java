@@ -10,7 +10,7 @@
  * fashion: the hour increments when the minutes roll over to zero.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class ClockDisplay
 {
@@ -48,15 +48,15 @@ public class ClockDisplay
     public void timeTick()
     {
         minutes.increment();
-        if(minutes.getValue() == 0) {  // it just rolled over!
+        if(minutes.getValue() == 0) {
+            // It just rolled over!
             hours.increment();
         }
         updateDisplay();
     }
 
     /**
-     * Set the time of the display to the specified hour and
-     * minute.
+     * Set the time of the display to the specified hour and minute.
      */
     public void setTime(int hour, int minute)
     {

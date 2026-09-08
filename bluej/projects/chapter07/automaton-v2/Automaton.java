@@ -4,7 +4,7 @@ import java.util.Arrays;
  * Model a 1D elementary cellular automaton.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version  2016.02.29 - version 2
+ * @version 7.2
  */
 public class Automaton
 {
@@ -22,7 +22,7 @@ public class Automaton
         this.numberOfCells = numberOfCells;
         state = new int[numberOfCells];
         // Seed the automaton with a single 'on' cell in the middle.
-        state[numberOfCells / 2] = 1;
+        reset();
     }
     
     /**

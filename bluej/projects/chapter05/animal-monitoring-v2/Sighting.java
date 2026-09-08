@@ -4,7 +4,7 @@
  * Details of a sighting of a type of animal by an individual spotter.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.0
  */
 public class Sighting 
 {

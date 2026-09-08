@@ -8,7 +8,7 @@
  * automatically rolls over to zero when reaching the limit.
  * 
  * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @version 7.0
  */
 public class NumberDisplay
 {
@@ -65,6 +65,9 @@ public class NumberDisplay
      */
     public void increment()
     {
-        value = (value + 1) % limit;
+        value = value + 1;
+        if(value == limit) {
+            value = 0;
+        }
     }
 }

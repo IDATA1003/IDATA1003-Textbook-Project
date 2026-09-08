@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * and track name, separated by a dash. For example: TheBeatles-HereComesTheSun.mp3
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @version 7.0
  */
 public class TrackReader
 {
@@ -34,16 +34,23 @@ public class TrackReader
      */
     public ArrayList<Track> readTracks(String folder, String suffix)
     {
+        ArrayList<Track> trackList;
         File audioFolder = new File(folder);
-        File[] audioFiles = audioFolder.listFiles((dir, name) -> 
-                    name.toLowerCase().endsWith(suffix));
-        
-        // Put all the matching files into the organizer.
-        ArrayList<Track> tracks = 
-            Arrays.stream(audioFiles).
-                   map(file -> decodeDetails(file)).
-                   collect(Collectors.toCollection(ArrayList::new));
-        return tracks;
+        if(audioFolder.exists() && audioFolder.isDirectory() && audioFolder.canRead()) {
+            File[] audioFiles = audioFolder.listFiles((dir, name) -> 
+                        name.toLowerCase().endsWith(suffix));
+            
+            // Put all the matching files into the organizer.
+            trackList = 
+                Arrays.stream(audioFiles).
+                       map(file -> decodeDetails(file)).
+                       collect(Collectors.toCollection(ArrayList::new));
+        }
+        else{
+            System.out.printf("Cannot find %s and no tracks read.%n",folder);
+            trackList = new ArrayList<>();
+        }
+        return trackList;
     }
 
     /**

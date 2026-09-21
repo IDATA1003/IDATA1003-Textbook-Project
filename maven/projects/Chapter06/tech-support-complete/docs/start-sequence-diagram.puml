@@ -1,0 +1,44 @@
+@startuml
+title SupportSystem.start() - Sequence Diagram
+
+actor User
+participant TechSupportApp
+participant SupportSystem
+participant InputReader
+participant Responder
+
+TechSupportApp -> SupportSystem: new SupportSystem()
+activate SupportSystem
+SupportSystem -> InputReader: new InputReader()
+SupportSystem -> Responder: new Responder()
+deactivate SupportSystem
+
+TechSupportApp -> SupportSystem: start()
+activate SupportSystem
+SupportSystem -> SupportSystem: printWelcome()
+SupportSystem --> User: Welcome and instructions
+
+loop until input contains "bye"
+  SupportSystem -> InputReader: getInput()
+  activate InputReader
+  InputReader --> User: prompt "> "
+  User -> InputReader: enters a line
+  InputReader --> SupportSystem: HashSet<String> input
+  deactivate InputReader
+
+  alt input contains "bye"
+    SupportSystem -> SupportSystem: finished = true
+  else input does not contain "bye"
+    SupportSystem -> Responder: generateResponse(input)
+    activate Responder
+    Responder --> SupportSystem: response
+    deactivate Responder
+    SupportSystem --> User: print response
+  end
+end
+
+SupportSystem -> SupportSystem: printGoodbye()
+SupportSystem --> User: "Nice talking to you. Bye..."
+deactivate SupportSystem
+
+@enduml

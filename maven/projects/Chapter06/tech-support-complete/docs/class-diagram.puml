@@ -1,0 +1,44 @@
+@startuml
+title Tech Support - Class Diagram
+
+class TechSupportApp {
+  {static} +main(args: String[]): void
+}
+
+class SupportSystem {
+  -reader: InputReader
+  -responder: Responder
+  +SupportSystem()
+  +start(): void
+  -printWelcome(): void
+  -printGoodbye(): void
+}
+
+class InputReader {
+  -reader: Scanner
+  +InputReader()
+  +getInput(): HashSet<String>
+}
+
+class Responder {
+  -responseMap: HashMap<String, String>
+  -defaultResponses: ArrayList<String>
+  -randomGenerator: Random
+  +Responder()
+  +generateResponse(words: HashSet<String>): String
+  -fillResponseMap(): void
+  -fillDefaultResponses(): void
+  -pickDefaultResponse(): String
+}
+
+TechSupportApp ..> SupportSystem : creates and starts
+SupportSystem *-- InputReader : owns
+SupportSystem *-- Responder : owns
+InputReader ..> Scanner : uses
+InputReader ..> HashSet : returns
+Responder ..> HashMap : uses
+Responder ..> ArrayList : uses
+Responder ..> Random : uses
+Responder ..> HashSet : accepts
+
+@enduml
